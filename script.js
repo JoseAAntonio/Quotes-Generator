@@ -27,7 +27,7 @@ const getQuotes = async () => {
 		apiQuotes = await response.json();
 		newQuote();
 	} catch (error) {
-		//catch error here
+		alert("ops... Something went wrong, try again later");
 	}
 };
 
