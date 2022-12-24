@@ -19,17 +19,31 @@ const removeLoadingSpinner = () => {
 };
 
 //NOTE - getting quotes from APi
-const getQuotes = async () => {
+const getQuotes = () => {
 	showLoadingSpinner();
 	const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
-	try {
-		const response = await fetch(apiUrl);
-		apiQuotes = await response.json();
-		newQuote();
-	} catch (error) {
-		alert("ops... Something went wrong, try again later");
-	}
+	fetch(apiUrl)
+		.then((response) => response.json())
+		.then((data) => {
+			apiQuotes = data;
+			newQuote();
+		})
+		.catch((error) => {
+			alert("ops... Something went wrong, try again later");
+		});
 };
+
+// const getQuotes = async () => {
+// 	showLoadingSpinner();
+// 	const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
+// 	try {
+// 		const response = await fetch(apiUrl);
+// 		apiQuotes = await response.json();
+// 		newQuote();
+// 	} catch (error) {
+// 		alert("ops... Something went wrong, try again later");
+// 	}
+// };
 
 //NOTE - show New Quote - called on event listener
 const newQuote = () => {
